@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
-
 import urllib.parse
 from bson.objectid import ObjectId
+from bson.json_util import dumps
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -29,7 +29,7 @@ def hello():
 @app.route("/api/tasks", methods=["GET"])
 def get_tasks():
     tasks = list(mongo.db.todo.find())
-    return jsonify(tasks), 200
+    return dumps(tasks), 200
 
 
 @app.route("/api/tasks", methods=["POST"])
