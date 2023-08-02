@@ -18,7 +18,7 @@ app.config["MONGO_URI"] = "mongodb+srv://%s:%s@cluster0.gumkccs.mongodb.net/todo
 
 mongo = PyMongo(app)
 # db = client.test_database
-print("Database connection: ", mongo.db)
+# print("Database connection: ", mongo.db)
 
 
 @app.route("/")
