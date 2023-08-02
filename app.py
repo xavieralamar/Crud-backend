@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
+
 import urllib.parse
 from bson.objectid import ObjectId
 from flask_cors import CORS
@@ -16,6 +18,7 @@ app.config["MONGO_URI"] = "mongodb+srv://%s:%s@cluster0.gumkccs.mongodb.net/todo
 
 mongo = PyMongo(app)
 # db = client.test_database
+print("Database connection: ", mongo.db)
 
 
 @app.route("/")
