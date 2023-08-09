@@ -36,17 +36,20 @@ def get_tasks():
 def add_task():
     task = request.json.get("task")
     task_id = mongo.db.todo.insert_one({"task": task}).inserted_id
+    return jsonify({"message": "Task added successfully", "id": str(task_id)}), 201
 
 
 @app.route("/api/tasks/<task_id>", methods=["PUT"])
 def update_task(task_id):
     task = request.json.get("task")
     mongo.db.todo.update_one({"_id": ObjectId(task_id)}, {"$set": {"task": task}})
+    return jsonify({"message": "Task updated successfully"}), 200
 
 
 @app.route("/api/tasks/<task_id>", methods=["DELETE"])
 def delete_task(task_id):
     mongo.db.todo.delete_one({"_id": ObjectId(task_id)})
+    return jsonify({"message": "Task deleted successfully"}), 200
 
 
 if __name__ == "__main__":
